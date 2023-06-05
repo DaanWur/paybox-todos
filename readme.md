@@ -20,7 +20,7 @@ In this project I implemented the backend of an TODO app, it is consisted of two
 4. From the main folder type in the terminal:
    1. > npm run start:notification to run the notification service
    2. > npm run start:todos to run the todos service
-   3.   ** The DB is always running thanks to mongoDB Atlas **
+   3.   **The DB is always running thanks to mongoDB Atlas**
 5. Start testing with PostMan
 
 ## Considerations:
