@@ -31,6 +31,7 @@ During the task I made some considerations in order to answer the requirements o
 - In order to support the SendNotification() function I created a route which filters out the upcoming tasks to complete
 - Created one models folder for both of the microservices in order to access all model from whereever needed
 - There was no actual need to generate a connection between the microservice besides the DB
+- **.env file was uploaded for the presentation only**
 
 ## Points to improve
 
