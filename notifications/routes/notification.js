@@ -8,6 +8,8 @@ router.get("/all-notifications", async (req, res) => {
   const notifications = await Notification.find();
   res.send(notifications);
 });
+
+// returns the about to be dued tasks
 router.get("/close-due", async (req, res) => {
   const notNotified = await Notification.find({ notifiedUser: false });
   const taskIds = notNotified.map((notification) => {
@@ -19,6 +21,7 @@ router.get("/close-due", async (req, res) => {
       $gte: startOfToday(),
       $lte: add(startOfToday(), { days: 4 }),
     },
+    status: false,
   }).sort({ dueDate: 1 });
   const tasksToNotify = tasks.filter((x) => {
     return taskIds.indexOf(x.id.toString()) !== -1;
@@ -36,6 +39,7 @@ router.post("/create", async (req, res) => {
   res.send(notification);
 });
 
+// update notifications
 router.patch("/:id", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);

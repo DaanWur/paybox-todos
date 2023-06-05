@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Joi = require("joi").extend(require("@joi/date"));
 
+// the task model
+// status true = task is done
 const Task = mongoose.model(
   "Task",
   new mongoose.Schema({
@@ -24,6 +26,10 @@ const Task = mongoose.model(
       required: true,
       type: Date,
     },
+    status: {
+      type: Boolean,
+      default: false,
+    },
   })
 );
 
@@ -35,6 +41,7 @@ function validateTask(task) {
       .format(["YYYY-MM-DD HH:mm", "YYYY/MM/DD"])
       .allow("")
       .required(),
+    status: Joi.boolean().default(false),
   });
   return schema.validate(task);
 }

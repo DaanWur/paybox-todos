@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Joi = require("joi").extend(require("@joi/date"));
 Joi.objectId = require("joi-objectid")(Joi);
 
+// notification model which holds the taskId
 const Notification = mongoose.model(
   "Notification",
   new mongoose.Schema({

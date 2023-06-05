@@ -7,11 +7,13 @@ function checkRequest(req) {
   if (error) return res.status(400).send(error.details[0].message);
 }
 
+// get all tasks
 router.get("/", async (req, res) => {
   const tasks = await Task.find().sort("dueDate");
   res.send(tasks);
 });
 
+// get task by id
 router.get("/:id", async (req, res) => {
   const task = await Task.findById(req.params.id);
   if (!task) return res.status(404).send("This task cannot be found");
@@ -30,6 +32,7 @@ router.post("/create", async (req, res) => {
   res.send(task);
 });
 
+// update task
 router.patch("/:id", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -37,6 +40,7 @@ router.patch("/:id", async (req, res) => {
   const task = await Task.findByIdAndUpdate(req.params.id, {
     title: req.body.title,
     dueDate: req.body.dueDate,
+    status: req.body.status,
   });
   if (!task) return res.status(404).send("This task cannot be found");
 
